@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4" style="padding-top: 20px;">
+        <h1 class="h3 mb-0 text-gray-800">Ticket History</h1>
+    </div>
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+
+    <div class="example-container mat-elevation-z8">
+
+        <mat-table [dataSource]="dataSource" matSort>
+
+
+            <ng-container matColumnDef="ticketName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Ticket Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.ticketName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="priority">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Priority </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.priority}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="assignedParticipant">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Assigned To </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.assignedParticipant}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="updateParticipant">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Updated By </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.updateParticipant}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="updatedDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Updated On </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.updatedDate * 1000 | date:'medium' }} </mat-cell>
+            </ng-container>
+
+
+
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>

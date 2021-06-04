@@ -1,0 +1,123 @@
+<div id="wrapper">
+
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/home/dashboard">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-bug"></i>
+            </div>
+            <div class="sidebar-brand-text mx-1">Tracker <sup></sup></div>
+
+        </a>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" (click)="setHeaderName('Dashboard')" routerLink="/home/dashboard">
+                <i class="fas fa-fw fa-chart-bar"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <div class="sidebar-heading">
+            Projects
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-file-medical-alt"></i>
+                <span>Projects</span>
+            </a>
+            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Projects:</h6>
+                    <a class="collapse-item" (click)="setOwnProjectsToFalse()" routerLink="/home/projects">All Projects</a>
+                    <a class="collapse-item" (click)="setOwnProjectsToTrue()" routerLink="/home/projects">Created Projects</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item" (click)="openAddProjectDialog()" onmouseover="" style="cursor: pointer;">
+            <a class="nav-link">
+                <i class="fas fa-fw fa-plus-square"></i>
+                <span>Create Project</span></a>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <div class="sidebar-heading">
+            Tickets
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-newspaper"></i>
+                <span>Tickets</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tickets:</h6>
+                    <a class="collapse-item" (click)="setAllTickets()" routerLink="/home/tickets">All Tickets</a>
+                    <a class="collapse-item" (click)="setAssignedTickets()" routerLink="/home/tickets">Assigned Tickets</a>
+                    <a class="collapse-item" (click)="setOpenTickets()" routerLink="/home/tickets">Open Tickets</a>
+                    <a class="collapse-item" (click)="setClosedTickets()" routerLink="/home/tickets">Closed Tickets</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="openAddTicketDialog()" onmouseover="" style="cursor: pointer;">
+                <i class="fas fa-fw fa-plus-square"></i>
+                <span>Create Ticket</span></a>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <div class="sidebar-heading">
+            Team Members
+        </div>
+
+        <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" routerLink="/home/members" (click)="setHeaderName('My Teammates')">
+                <i class="fas fa-fw fa-users"></i>
+                <span>My Teammates</span></a>
+        </li>
+
+        <li class="nav-item" (click)="addMemberSidePanel()" onmouseover="" style="cursor: pointer;">
+            <a class="nav-link">
+                <i class="fas fa-fw fa-plus-square"></i>
+                <span>Add Member</span></a>
+        </li>
+
+        <hr class="sidebar-divider d-none d-md-block">
+
+
+    </ul>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div *ngIf="isLoading" class="loader-container">
+            <mat-spinner style="top: 40%; left: 40%;"></mat-spinner>
+        </div>
+        <div id="content">
+
+
+            <app-header></app-header>
+            <router-outlet></router-outlet>
+
+        </div>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Bug Tracker 2021</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+
+</div>
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>

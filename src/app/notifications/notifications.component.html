@@ -1,0 +1,26 @@
+<div class="user-info">
+    <div class="container">
+        <div class="main-body">
+            <div class="row gutters-sm">
+                <div class="col-md-8">
+                    <div class="card mb-3" *ngFor="let n of notifications">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-9 text-dark">
+                                    <div class="small text-gray-500">{{n.date * 1000 | date:'medium'}}</div>
+                                    <h4 class="mb-0"><span class="bold-text">{{n.senderName}}</span>invites you to work on project <span class="bold-text">"{{n.projectName}}"</span></h4>
+                                </div>
+                                <div class="topbar-divider d-none d-sm-block"></div>
+                                <div class="col-sm-3 text-secondary">
+                                    <span><button mat-raised-button color="primary" (click)="acceptRequest(n)">Accept</button></span>
+                                    <button mat-raised-button color="warn" (click)="declineRequest(n)">Decline</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

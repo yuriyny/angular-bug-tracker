@@ -1,0 +1,20 @@
+<div class="jumbotron" *ngIf="projectResponse">
+    <h1>{{projectResponse.projectName}}</h1>
+    <p>{{projectResponse.projectDescription}}</p>
+    <span><add-member-button [projectId]=projectId></add-member-button></span>
+    <span><add-ticket-button [projectId]=projectId></add-ticket-button></span>
+    <span><update-project-button [project]=project></update-project-button></span>
+</div>
+
+
+<!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Project Name</h1>
+    <h1 class="h3 mb-0 text-gray-800">{{projectResponse.projectName}}</h1>
+</div>
+
+<div *ngIf="projectResponse">
+    <h1>{{projectResponse.projectName}}</h1>
+    <h3>{{projectResponse.projectDescription}}</h3>
+</div> -->
+<!-- <add-member-button [projectId]=projectId></add-member-button>
+<add-ticket-button [projectId]=projectId></add-ticket-button> -->

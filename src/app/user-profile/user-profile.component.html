@@ -1,0 +1,50 @@
+<div class="user-info">
+    <div class="container">
+        <div class="main-body">
+            <div class="row gutters-sm">
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3 text-dark">
+                                    <h4 class="mb-0">Username</h4>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{username}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3 text-dark">
+                                    <h4 class="mb-0">Email</h4>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{email}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3 text-dark">
+                                    <h4 class="mb-0">Registration Date</h4>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{registrationDate * 1000 | date:'mediumDate'}}
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <button mat-raised-button color="primary" (click)="updateUser()">Edit</button>
+                                </div>
+                                <div class="col-sm-10">
+                                    <button mat-raised-button color="warn" (click)="updatePassword()">Change Password</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

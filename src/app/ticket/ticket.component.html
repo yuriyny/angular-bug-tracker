@@ -1,0 +1,112 @@
+<div class="container-fluid">
+    <div *ngIf="ticketResponse">
+
+        <div class="user-info">
+            <div class="container">
+                <div class="main-body ">
+                    <div class="row gutters-sm">
+                        <div class="col-md-8">
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-800">Ticket Details</h1>
+                            </div>
+                            <div class="card mb-3 mat-elevation-z8">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-sm-2 text-dark">
+                                            <h4 class="mb-0">Ticket Name</h4>
+                                        </div>
+                                        <div class="col-sm-4 text-secondary">
+                                            {{ticketResponse.ticketName}}
+                                        </div>
+                                        <div class="col-sm-2 text-dark">
+                                            <h4 class="mb-0">Status</h4>
+                                        </div>
+                                        <div class="col-sm-4 text-secondary">
+                                            <span [ngStyle]="{'background-color':getStatusColor(ticketResponse.status)}">{{ticketResponse.status}}</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-2 text-dark">
+                                            <h4 class="mb-0">Description</h4>
+                                        </div>
+                                        <div class="col-sm-4 text-secondary">
+                                            {{ticketResponse.description}}
+                                        </div>
+                                        <div class="col-sm-2 text-dark">
+                                            <h4 class="mb-0">Priority</h4>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span [ngStyle]="{'background-color':getPriorityColor(ticketResponse.priority)}">{{ticketResponse.priority}}</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-2 text-dark">
+                                            <h4 class="mb-0">Project</h4>
+                                        </div>
+                                        <div class="col-sm-4 text-secondary">
+                                            {{ticketResponse.projectName}}
+                                        </div>
+                                        <div class="col-sm-2 text-dark">
+                                            <h4 class="mb-0">Created On</h4>
+                                        </div>
+                                        <div class="col-sm-4 text-secondary">
+                                            {{ticketResponse.createdDate * 1000 | date:'medium'}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-2 text-dark">
+                                            <h4 class="mb-0">Creator</h4>
+                                        </div>
+                                        <div class="col-sm-4 text-secondary">
+                                            {{ticketResponse.creatorName}}
+                                        </div>
+                                        <div class="col-sm-2 text-dark">
+                                            <h4 class="mb-0">Updated On</h4>
+                                        </div>
+                                        <div class="col-sm-4 text-secondary">
+                                            {{ticketResponse.updatedDate * 1000 | date:'medium'}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-2 text-dark">
+                                            <h4 class="mb-0">Assigned To</h4>
+                                        </div>
+                                        <div class="col-sm-4 text-secondary">
+                                            {{ticketResponse.assignedParticipantName}}
+                                        </div>
+                                        <div class="col-sm-6 text-dark">
+                                            <update-ticket-button [ticketId]=ticketId></update-ticket-button>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <h1>{{ticketResponse.ticketName}}</h1>
+        <p>{{ticketResponse.description}}</p>
+        <p>Project: {{ticketResponse.projectName}}</p>
+        <p>Status: OPEN</p>
+        <p>Created By: {{ticketResponse.creatorName}}</p>
+        <p>Assigned To: {{ticketResponse.assignedParticipantName}} </p>
+        <p>Priority: {{ticketResponse.priority}}</p>
+        <p>Created On: {{ticketResponse.createdDate * 1000 | date:'medium'}}</p>
+        <p>Updated On: {{ticketResponse.updatedDate * 1000 | date:'medium'}}</p>
+
+        <span><button class="btn btn-primary">Ticket History</button></span>
+        <update-ticket-button [ticketId]=ticketId></update-ticket-button> -->
+    </div>
+    <app-ticket-history></app-ticket-history>
+    <app-comments></app-comments>
+</div>

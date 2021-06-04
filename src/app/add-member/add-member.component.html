@@ -1,0 +1,35 @@
+<div mat-dialog-content>
+    <div class="container-fluid popwindow">
+        <div class="add-form">
+            <form #addForm="ngForm" class="add-project-form" [formGroup]="addMemberForm">
+
+                <mat-form-field *ngIf="sideBarClick" appearance="fill" class="form-full-width">
+                    <mat-label>Project Name</mat-label>
+                    <mat-select (selectionChange)="updateMemberList($event.value)" [formControlName]="'projectName'" [errorStateMatcher]="matcher">
+                        <mat-option *ngFor="let project of projectList" [value]="project">{{project.projectName}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <mat-select [formControlName]="'username'" [errorStateMatcher]="matcher">
+                        <mat-option *ngFor="let user of allUsers" [value]="user">
+                            {{user.username}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <label>Role: </label>
+                    <mat-radio-group aria-label="Select Role" [formControlName]="'role'" [errorStateMatcher]="matcher">
+                        <mat-radio-button value="1">USER</mat-radio-button>
+                        <mat-radio-button value="0">ADMIN</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <button (click)="sendNotification()" mat-raised-button color="primary">Send Invitation</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>

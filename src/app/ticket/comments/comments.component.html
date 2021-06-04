@@ -1,0 +1,37 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="be-comment-block">
+        <h1 class="comments-title">Comments ({{comments.length}})</h1>
+        <div class="be-comment" *ngFor="let comment of comments">
+            <div class="be-img-comment">
+                <span style="font-size:60px;color:rgb(65, 65, 65);"><i class="far fa-comment-dots fa-flip-horizontal"></i></span>
+            </div>
+            <div class="be-comment-content">
+
+                <span class="be-comment-name">
+					<a href="#">{{comment.participantName}}</a>
+					</span>
+                <span class="be-comment-time">
+					<i class="fa fa-clock-o"></i>
+					{{comment.createdDate * 1000 | date:'medium'}}
+				</span>
+
+                <p class="be-comment-text">
+                    {{comment.text}}
+                </p>
+            </div>
+        </div>
+
+        <form class="form-block" [formGroup]="commentForm" (ngSubmit)="postComment()">
+
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <textarea class="form-control" [formControlName]="'text'" required="" placeholder="Your comment ..."></textarea>
+                </div>
+            </div>
+            <div class="center"><button mat-raised-button color="primary" type="submit">Submit Comment</button></div>
+
+            <!-- <button type="submit" class="btn btn-primary pull-right">Comment</button> -->
+        </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div mat-dialog-content>
+    <div class="container-fluid popwindow">
+        <div class="user-form">
+            <form #userForm="ngForm" class="add-project-form" [formGroup]="updateUserForm">
+                <mat-form-field class="form-full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" [formControlName]="'username'" [errorStateMatcher]="matcher" readonly>
+                </mat-form-field>
+
+                <mat-form-field class="form-full-width">
+                    <mat-label>New Email</mat-label>
+                    <input matInput placeholder="Email" [formControlName]="'email'" [errorStateMatcher]="matcher">
+                </mat-form-field>
+
+                <button (click)="updateUser(userForm)" mat-raised-button color="primary" [disabled]="!updateUserForm.valid">Update User</button>
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="example-header">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="ticketId">
+            <mat-header-cell class="id" *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell class="idcell" *matCellDef="let row"> {{row.ticketId}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ticketName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Ticket Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ticketName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="assignedParticipantName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Assigned To </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.assignedParticipantName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="priority">
+            <mat-header-cell class="prioritytitle" *matHeaderCellDef mat-sort-header> Priority </mat-header-cell>
+            <mat-cell class="priority" *matCellDef="let row"> <span [ngStyle]="{'background-color':getPriorityColor(row.priority)}">{{row.priority}}</span> </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="updatedDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Updated On </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.updatedDate * 1000 | date:'medium' }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <mat-header-cell class="prioritytitle" *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+            <mat-cell class="priority" *matCellDef="let row"> <span [ngStyle]="{'background-color':getStatusColor(row.status)}">{{row.status}}</span> </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="details">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Details </mat-header-cell>
+            <mat-cell *matCellDef="let row"> <a [routerLink]="['/home/ticket/',row.ticketId]"><button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                <mat-icon>menu</mat-icon>
+              </button></a> </mat-cell>
+        </ng-container>
+
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+</div>

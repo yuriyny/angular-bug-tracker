@@ -1,0 +1,114 @@
+<div class="bg-gradient-primary">
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                    </div>
+
+                                    <form class="user" [formGroup]="signupForm" (ngSubmit)="signup()">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Username</mat-label>
+                                            <input type="email" matInput [formControlName]="'username'" [errorStateMatcher]="matcher">
+
+                                            <mat-error *ngIf="signupForm.get('username').hasError('username') && !signupForm.get('username').hasError('required')">
+                                                Please enter a valid username
+                                            </mat-error>
+                                            <mat-error *ngIf="signupForm.get('username').hasError('required')">
+                                                Username is <strong>required</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Email</mat-label>
+                                            <input type="email" matInput [formControlName]="'email'" [errorStateMatcher]="matcher" placeholder="Ex. name@example.com">
+                                            <mat-error *ngIf="signupForm.get('email').hasError('email') && !signupForm.get('email').hasError('required')">
+                                                Please enter a valid email address
+                                            </mat-error>
+                                            <mat-error *ngIf="signupForm.get('email').hasError('required')">
+                                                Email is <strong>required</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Password</mat-label>
+                                            <input type="password" matInput [formControlName]="'password'" [errorStateMatcher]="matcher">
+
+                                            <mat-error *ngIf="signupForm.get('password').hasError('password') && !signupForm.get('password').hasError('required')">
+                                                Please enter a valid password
+                                            </mat-error>
+                                            <mat-error *ngIf="signupForm.get('password').hasError('required')">
+                                                Password is <strong>required</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field class="example-full-width" style="padding-bottom: 1.5rem;">
+                                            <mat-label>Confirm Password</mat-label>
+                                            <input type="password" matInput [formControlName]="'confirmPassword'" [errorStateMatcher]="matcher">
+
+                                            <mat-error *ngIf="signupForm.get('confirmPassword').hasError('confirmPassword') && !signupForm.get('confirmPassword').hasError('required')">
+                                                Please re-enter a valid password
+                                            </mat-error>
+                                            <mat-error *ngIf="signupForm.get('confirmPassword').hasError('required')">
+                                                Confirm password is <strong>required</strong>
+                                            </mat-error>
+                                            <mat-error *ngIf="signupForm.get('confirmPassword').hasError('mustMatch')">
+                                                Confirm password and Password doesn't match
+                                            </mat-error>
+
+                                        </mat-form-field>
+
+                                        <button type="submit" class="btn-block" mat-raised-button color="primary" [disabled]="!signupForm.valid">Register</button>
+                                    </form>
+
+
+
+
+                                    <!-- <form class="user" [formGroup]="signupForm">
+
+                                        <div class="form-group">
+                                            <input type="text" [formControlName]="'username'" class="form-control form-control-user" id="userName" placeholder="Username">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" [formControlName]="'email'" class="form-control form-control-user" id="userEmail" placeholder="Email Address">
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input type="password" [formControlName]="'password'" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            </div>
+                                        </div>
+                                        <a class="btn btn-primary btn-user btn-block" routerLink="/login" (click)=signup()>
+                                            Register Account
+                                        </a>
+                                        <hr>
+                                    </form> -->
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" routerLink="/login">Already have an account? Login!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
