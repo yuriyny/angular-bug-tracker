@@ -36,4 +36,10 @@ export class TicketHistoryComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
+  getPriorityColor(priority: string): string {
+    if (priority === 'LOW') return '#28a745';
+    else if (priority === 'MEDIUM') return '#ffc107';
+    else return '#dc3545';
+  }
+
 }

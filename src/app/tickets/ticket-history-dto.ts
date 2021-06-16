@@ -6,5 +6,8 @@ export class TicketHistoryDto{
     updatedDate: number;
     priority: number;
     updateParticipant: number;
+    updateParticipantName: string;
     assignedParticipant: number;
+    assignedParticipantName: string;
+    status: any;
 }

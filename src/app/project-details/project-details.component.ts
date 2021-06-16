@@ -21,10 +21,12 @@ export class ProjectDetailsComponent implements OnInit {
   closedPersantage = 0;
   memberList: Array<ParticipantDto> = [];
   numberOfMembers = 0;
+  
   constructor(private activateRoute: ActivatedRoute,
     private projectsService: ProjectsService, private ticketsService: TicketsService) { }
 
   ngOnInit(): void {
+    
     this.ticketsService.getTicketsByProjectId(this.activateRoute.snapshot.params.projectId).subscribe(data => {
       this.projectTickets = data;
       this.numberOfTickets = this.projectTickets.length;

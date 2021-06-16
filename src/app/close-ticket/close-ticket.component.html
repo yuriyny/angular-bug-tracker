@@ -1,0 +1,20 @@
+<div mat-dialog-content>
+    <div class="container-fluid popwindow">
+        <div class="add-form">
+            <div class="desc-title">Describe why you are closing ticket: <span style="font-weight: bolder; color:#1c8fa2">{{ticketResponse.ticketName}}</span></div>
+            <form #addForm="ngForm" class="add-project-form" [formGroup]="updateTicketForm">
+
+
+                <mat-form-field class="form-full-width">
+                    <textarea matInput placeholder="Description" [formControlName]="'description'" [errorStateMatcher]="matcher"></textarea>
+                    <mat-error *ngIf="updateTicketForm.get('description').hasError('required')">
+                        Ticket description is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <button (click)="closeTicket(addForm)" mat-raised-button color="primary" [disabled]="!updateTicketForm.valid">Close Ticket</button>
+            </form>
+
+        </div>
+    </div>
+</div>

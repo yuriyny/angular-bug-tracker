@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { throwError } from 'rxjs';
+import { AuthService } from '../auth/shared/auth.service';
 import { TicketResponse } from '../tickets/ticket-response';
 import { TicketsService } from '../tickets/tickets.service';
 
@@ -12,20 +13,27 @@ import { TicketsService } from '../tickets/tickets.service';
 export class TicketComponent implements OnInit {
   ticketId: number;
   ticketResponse: TicketResponse;
-  constructor(private activateRoute: ActivatedRoute, private ticketsService: TicketsService) { }
+  status: string;
+  isCreator: boolean = false;
+  isAssigned: boolean = false;
+
+  constructor(private activateRoute: ActivatedRoute, private ticketsService: TicketsService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.ticketId = this.activateRoute.snapshot.params.ticketId;
     this.ticketsService.getTicketById(this.ticketId).subscribe(ticket =>{
+      this.status = ticket.status;
+      if(this.authService.getUserName() == ticket.creatorName){
+        this.isCreator = true;
+      } 
+      if(this.authService.getUserName() == ticket.assignedParticipantName){
+        this.isAssigned = true;
+      }
       this.ticketsService.ticketResponse.next(ticket);
       this.ticketsService.ticketResponse.subscribe(tr=>{
         this.ticketResponse = tr;
-        //console.log(ticket);
-        console.log("HERE");
         
-        console.log(tr);
-        
-      })
+      });
       
       
     }, error => {

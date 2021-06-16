@@ -79,6 +79,7 @@ import { PieChartComponent } from './dashboard/pie-chart/pie-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './dashboard/doughnut-chart/doughnut-chart.component';
+import { CloseTicketButton, CloseTicketComponent } from './close-ticket/close-ticket.component';
 
 @NgModule({
   declarations: [
@@ -117,8 +118,9 @@ import { DoughnutChartComponent } from './dashboard/doughnut-chart/doughnut-char
     NotificationsComponent,
     PieChartComponent,
     BarChartComponent,
-    DoughnutChartComponent
-    
+    DoughnutChartComponent,
+    CloseTicketComponent,
+    CloseTicketButton
     
   ],
   imports: [

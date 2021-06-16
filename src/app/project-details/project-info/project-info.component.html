@@ -1,9 +1,11 @@
 <div class="jumbotron" *ngIf="projectResponse">
     <h1>{{projectResponse.projectName}}</h1>
     <p>{{projectResponse.projectDescription}}</p>
+    <span *ngIf="currentParticipant && currentParticipant.role=='ADMIN'">
     <span><add-member-button [projectId]=projectId></add-member-button></span>
     <span><add-ticket-button [projectId]=projectId></add-ticket-button></span>
     <span><update-project-button [project]=project></update-project-button></span>
+    </span>
 </div>
 
 

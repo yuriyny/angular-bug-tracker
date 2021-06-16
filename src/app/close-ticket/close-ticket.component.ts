@@ -5,18 +5,17 @@ import { AddTicketComponent } from '../add-ticket/add-ticket.component';
 import { AuthService } from '../auth/shared/auth.service';
 import { MyErrorStateMatcher } from '../auth/shared/my-error-state-matcher';
 import { ParticipantDto } from '../project-details/project-members/participant-dto';
-import { ProjectResponse } from '../projects/project-response';
 import { ProjectsService } from '../projects/projects.service';
 import { TicketHistoryDto } from '../tickets/ticket-history-dto';
 import { TicketResponse } from '../tickets/ticket-response';
 import { TicketsService } from '../tickets/tickets.service';
 
 @Component({
-  selector: 'update-ticket-button',
-  templateUrl: 'update-ticket-button.html',
-  styleUrls: ['./update-ticket.component.scss']
+  selector: 'close-ticket-button',
+  templateUrl: 'close-ticket-button.html',
+  styleUrls: ['./close-ticket.component.scss']
 })
-export class UpdateTicketButton {
+export class CloseTicketButton {
   //projectId: number;
   @Input() ticketId: number;
   @Input() status: string;
@@ -30,7 +29,7 @@ export class UpdateTicketButton {
 
     this.ticketService.getTicketById(this.ticketId).subscribe(ticket => {
 
-      const dialogRef = this.dialog.open(UpdateTicketComponent, {
+      const dialogRef = this.dialog.open(CloseTicketComponent, {
         width: '500px',
         data: { ticket: ticket }
       });
@@ -45,7 +44,7 @@ export class UpdateTicketButton {
   openDialogCloseTicket(): void  {
     this.ticketService.getTicketById(this.ticketId).subscribe(ticket => {
 
-      const dialogRef = this.dialog.open(UpdateTicketComponent, {
+      const dialogRef = this.dialog.open(CloseTicketComponent, {
         width: '500px',
         data: { ticket: ticket }
       });
@@ -59,12 +58,13 @@ export class UpdateTicketButton {
 
 
 
+
 @Component({
-  selector: 'app-update-ticket',
-  templateUrl: './update-ticket.component.html',
-  styleUrls: ['./update-ticket.component.scss']
+  selector: 'app-close-ticket',
+  templateUrl: './close-ticket.component.html',
+  styleUrls: ['./close-ticket.component.scss']
 })
-export class UpdateTicketComponent implements OnInit {
+export class CloseTicketComponent implements OnInit {
 
   updateTicketForm: FormGroup;
   matcher = new MyErrorStateMatcher();
@@ -81,28 +81,23 @@ export class UpdateTicketComponent implements OnInit {
   isAssigned: boolean;
   assignedId: number;
   assignedName: string;
+
   constructor(public authService: AuthService, private projectService: ProjectsService, private ticketService: TicketsService, public dialogRef: MatDialogRef<AddTicketComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData) { }
 
   ngOnInit(): void {
     this.updateTicketForm = new FormGroup({
-      ticketName: new FormControl('', Validators.required),
+      ticketName: new FormControl(''),
       description: new FormControl('', Validators.required),
-      assignTo: new FormControl(''),
-      priority: new FormControl('', Validators.required)
+      //assignTo: new FormControl(''),
+      //priority: new FormControl('', Validators.required)
     });
 
     this.ticketResponse = this.dialogData.ticket;
-    if (this.ticketResponse.creatorName == this.authService.getUserName()) {
-      this.isCreator = true
-      this.updateTicketForm.get('assignTo').setValidators([Validators.required]);
 
-    }
-    if (this.ticketResponse.assignedParticipantName == this.authService.getUserName()) {
-      this.isAssigned = true
-    }
-    this.updateTicketForm.get('ticketName').setValue(this.ticketResponse.ticketName);
-    this.updateTicketForm.get('description').setValue(this.ticketResponse.description);
+
+    //this.updateTicketForm.get('ticketName').setValue(this.ticketResponse.ticketName);
+    //this.updateTicketForm.get('description').setValue(this.ticketResponse.description);
     this.projectService.getProjectMembersByProjectId(this.dialogData.ticket.projectId).subscribe(members => {
       this.memberList = members;
 
@@ -116,52 +111,33 @@ export class UpdateTicketComponent implements OnInit {
     // });  
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
-  addTicket(form: NgForm) {
-    // this.ticketResponse = {
-    //   ticketId: null,
-    //   ticketName: form.value.ticketName,
-    //   projectName: this.selectedProject, 
-    //   description: form.value.description,
-    //   priority: this.priority,
-    //   createdDate: null,
-    //   updatedDate: null,
-    //   assignedParticipant: this.assignTo.participantId,
-    //   participantName: null
-    // }
-    // this.ticketsService.addTicket(this.ticketResponse).subscribe(data=>{
-    //   this.ticketsService.ticketList.push(data);
-    //   this.ticketsService.tickets.next(data);
-    //   console.log(data);     
-    // });
-    // form.reset(); 
+  closeTicket(form: NgForm) {
+
     console.log(form.value.ticketName);
     console.log(this.ticketResponse);
     console.log(this.assignTo);
 
-    if (this.isAssigned) {
-      this.assignedId = this.ticketResponse.assignedParticipant;
-      this.assignedName = this.ticketResponse.assignedParticipantName;
-    } else {
-      this.assignedId = this.updateTicketForm.get('assignTo').value.participantId;
-      this.assignedName = this.updateTicketForm.get('assignTo').value.username;
-    }
+    // if (this.isAssigned) {
+    //   this.assignedId = this.ticketResponse.assignedParticipant;
+    //   this.assignedName = this.ticketResponse.assignedParticipantName;
+    // } else {
+    //   this.assignedId = this.updateTicketForm.get('assignTo').value.participantId;
+    //   this.assignedName = this.updateTicketForm.get('assignTo').value.username;
+    // }
 
     this.ticketHistoryDto = {
       ticketHistoryId: null,
-      ticketName: this.updateTicketForm.get('ticketName').value,
+      ticketName: this.ticketResponse.ticketName,
       description: this.updateTicketForm.get('description').value,
       ticket: this.ticketResponse.ticketId,
       updatedDate: null,
-      priority: this.updateTicketForm.get('priority').value,
+      priority: this.ticketResponse.priority,
       updateParticipant: null,
       updateParticipantName: null,
-      assignedParticipant: this.assignedId,
+      assignedParticipant: this.ticketResponse.assignedParticipant,
       assignedParticipantName: null,
-      status: 0
+      status: 1
     }
     console.log(this.ticketHistoryDto);
 
@@ -170,7 +146,7 @@ export class UpdateTicketComponent implements OnInit {
     this.ticketService.updateTicket(this.ticketHistoryDto).subscribe(th => {
       console.log(th);
 
-      this.ticketResponse.assignedParticipantName = this.assignedName;
+      this.ticketResponse.assignedParticipantName = this.ticketResponse.assignedParticipantName;
       this.ticketResponse.priority = th.priority;
       this.ticketResponse.ticketName = th.ticketName;
       this.ticketResponse.description = th.description;
@@ -183,6 +159,5 @@ export class UpdateTicketComponent implements OnInit {
 
 
   }
-  
-  
+
 }

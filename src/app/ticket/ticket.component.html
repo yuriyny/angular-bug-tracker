@@ -80,7 +80,8 @@
                                             {{ticketResponse.assignedParticipantName}}
                                         </div>
                                         <div class="col-sm-6 text-dark">
-                                            <update-ticket-button [ticketId]=ticketId></update-ticket-button>
+                                            <update-ticket-button [ticketId]=ticketId [status]=status [isCreator]=isCreator [isAssigned]=isAssigned></update-ticket-button>
+                                            <close-ticket-button [ticketId]=ticketId [status]=status [isCreator]=isCreator [isAssigned]=isAssigned style="padding-left: 10px;"></close-ticket-button>
                                         </div>
 
                                     </div>

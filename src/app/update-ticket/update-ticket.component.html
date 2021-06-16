@@ -19,7 +19,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" class="form-full-width">
+                <mat-form-field appearance="fill" class="form-full-width" *ngIf="isCreator">
                     <mat-label>Assign To</mat-label>
                     <mat-select [formControlName]="'assignTo'" [errorStateMatcher]="matcher">
                         <mat-option *ngFor="let member of memberList" [value]="member">{{member.username}}</mat-option>

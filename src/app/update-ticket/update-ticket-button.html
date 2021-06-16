@@ -1,1 +1,1 @@
-<button mat-raised-button color="primary" (click)="openDialog()">Update Ticket</button>
+<button mat-raised-button color="primary" class="ubtn" (click)="openDialog()" [disabled]="status=='CLOSED' || !(isCreator  || isAssigned)">Update Ticket</button>

@@ -26,17 +26,17 @@
 
             <ng-container matColumnDef="priority">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Priority </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.priority}} </mat-cell>
+                <mat-cell *matCellDef="let row"> <span [ngStyle]="{'background-color':getPriorityColor(row.priority)}">{{row.priority}}</span> </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="assignedParticipant">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Assigned To </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.assignedParticipant}} </mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.assignedParticipantName}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="updateParticipant">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Updated By </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.updateParticipant}} </mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.updateParticipantName}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="updatedDate">

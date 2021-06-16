@@ -69,6 +69,10 @@ export class ProjectsService {
     return this.http.get<Array<ParticipantDto>>('http://localhost:8080/api/project/get-participants-all');
   }
 
+  getCurrentProjectParticipant(projectid: number): Observable<ParticipantDto>{
+    return this.http.get<ParticipantDto>('http://localhost:8080/api/project/get-participant/' + projectid);
+  }
+
   sendParticipantNotification(notificationDto: NotificationDto):Observable<NotificationDto>{
     return this.http.post<NotificationDto>('http://localhost:8080/api/project/send-notification', notificationDto);
   }
